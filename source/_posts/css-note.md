@@ -2,6 +2,7 @@
 title: css-note
 date: 2021-10-25 10:09:08
 tags: css
+toc: true
 ---
 
 # CSS selectors
