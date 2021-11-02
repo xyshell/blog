@@ -2,14 +2,49 @@
 title: trick-note
 date: 2020-10-07 17:18:23
 tags:
+toc: true
 ---
 
-show password in web
-```
+References of some interesting tricks.
+
+## show password in web
+
+```javascript
 document.querySelector('input[type=password]').value
 ```
 
-show ip address
-```
+## show IP address
+
+```bash
 curl ifconfig.me
+```
+
+## Send email from gmail
+
+Reference:
+
+- [Send email in Python](https://julien.danjou.info/sending-emails-in-python-tutorial-code-examples/)
+- [简单三步，用 Python 发邮件](https://zhuanlan.zhihu.com/p/24180606)
+
+Note:
+
+- Turn on [Less secure app access](https://myaccount.google.com/lesssecureapps)
+
+```python
+import smtplib
+from email.mime.text import MIMEText
+import ssl
+
+port = 465
+password = input("your password")
+context = ssl.create_default_context()
+
+msg = MIMEText("The body of the email is here")
+msg['Subject'] = "An Email Alert"
+msg['From'] = "my@gmail.com"
+msg['To'] = "other@xxx.xxx"
+
+with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+    server.login("my@gmail.com", password)
+    server.send_message(msg)
 ```

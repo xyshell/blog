@@ -109,3 +109,47 @@ margin: 10px 20px 30px 40px;
 margin collapse, max(margin-bottom, margin-top) applied */
 margin-bottom: 10px;
 ```
+
+# CSS templates
+
+## normalize.css
+
+[normalize.css v8.0.1](github.com/necolas/normalize.css) is a collection of CSS resets and normalizations.
+
+## Mobile first design
+
+small.css
+
+```css
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+}
+```
+
+medium.css
+
+```css
+@media only screen and (min-width: 768px) {
+  ...;
+}
+```
+
+large.css
+
+```css
+@media only screen and (min-width: 1024px) {
+  ...;
+}
+```
