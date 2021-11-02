@@ -1,5 +1,5 @@
 ---
-title: ide-note
+title: IDE Note
 date: 2021-07-30 21:32:09
 tags: ide, vscode
 toc: true

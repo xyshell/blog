@@ -23,7 +23,7 @@ $ npm install
 
 File Structure:
 
-``` python
+```
 |-- _config.yml # configuration file for hexo
 |-- source
     |-- _posts

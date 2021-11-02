@@ -1,5 +1,5 @@
 ---
-title: algo-note
+title: Algo Note
 date: 2020-08-12 11:10:57
 tags: algo
 toc: true

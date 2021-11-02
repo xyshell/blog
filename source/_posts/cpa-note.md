@@ -1,5 +1,5 @@
 ---
-title: cpa-note
+title: CPA Note
 date: 2020-11-20 17:19:42
 tags: cpp, cpa
 toc: true

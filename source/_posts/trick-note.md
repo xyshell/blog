@@ -1,5 +1,5 @@
 ---
-title: trick-note
+title: Trick Note
 date: 2020-10-07 17:18:23
 tags:
 toc: true
@@ -7,13 +7,13 @@ toc: true
 
 References of some interesting tricks.
 
-## show password in web
+## Show password in web
 
 ```javascript
 document.querySelector('input[type=password]').value
 ```
 
-## show IP address
+## Show IP address
 
 ```bash
 curl ifconfig.me

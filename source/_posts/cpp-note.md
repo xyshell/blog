@@ -1,5 +1,5 @@
 ---
-title: cpp-note
+title: CPP Note
 date: 2020-07-13 01:56:16
 tags: cpp
 toc: true

@@ -1,5 +1,5 @@
 ---
-title: Intro Network Note
+title: Network Note
 date: 2020-06-20 13:45:44
 tags: network
 toc: true

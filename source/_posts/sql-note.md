@@ -1,5 +1,5 @@
 ---
-title: sql-note
+title: Sql Note
 date: 2020-10-12 23:27:52
 tags: sql
 toc: true

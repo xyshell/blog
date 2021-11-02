@@ -1,5 +1,5 @@
 ---
-title: css-note
+title: CSS Note
 date: 2021-10-25 10:09:08
 tags: css
 toc: true

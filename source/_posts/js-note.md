@@ -1,5 +1,5 @@
 ---
-title: js-note
+title: JS Note
 date: 2020-07-02 18:23:21
 tags: javascript
 toc: true

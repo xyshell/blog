@@ -1,5 +1,5 @@
 ---
-title: regex-note
+title: Regex Note
 date: 2020-09-05 14:51:44
 tags: regex
 toc: true

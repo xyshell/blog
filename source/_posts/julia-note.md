@@ -1,5 +1,5 @@
 ---
-title: julia-note
+title: Julia Note
 date: 2020-07-09 13:31:27
 tags: julia
 toc: true
