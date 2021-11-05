@@ -48,3 +48,10 @@ with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
     server.login("my@gmail.com", password)
     server.send_message(msg)
 ```
+
+## Check the quality of a website
+
+- [html validator](https://validator.w3.org/)
+- [css validator](https://jigsaw.w3.org/css-validator/)
+- [google's mobile-friendly test](https://search.google.com/test/mobile-friendly)
+- [website speed test](https://tools.pingdom.com/)
