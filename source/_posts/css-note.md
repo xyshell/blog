@@ -9,10 +9,9 @@ toc: true
 
 ```css
 h1,
-h2,
-h3 {
+h2 {
   ...;
-} /* html tag selector */
+} /* html tag selector, h1-h6 */
 
 #id {
   ...;
@@ -88,7 +87,8 @@ width: 100%;
 /* relative to parent width, default auto
 width: 1em; relative to parent font-size
 width: 1rem; relative to html font-size */
-
+backgroud-image: url(../images/image.png);
+background-repeat: repeat; /* repeat, repeat-x, repeat-y, no-repeat */
 background-color: #23cea6; /* RGB, default transparent */
 border: 10px solid #a693c2;
 border-color: #a693c2;

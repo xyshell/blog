@@ -10,13 +10,20 @@ References of some interesting tricks.
 ## Show password in web
 
 ```javascript
-document.querySelector('input[type=password]').value
+document.querySelector("input[type=password]").value;
 ```
 
 ## Show IP address
 
 ```bash
 curl ifconfig.me
+```
+
+## Download file and unzip
+
+```bash
+wget https://training.linuxfoundation.org/cm/LFS258/LFS258V2021-09-20SOLUTIONS.tar.xz --user=xxx --password=xxx
+tar -xvf LFS258V2021-09-20SOLUTIONS.tar.xz
 ```
 
 ## Send email from gmail
