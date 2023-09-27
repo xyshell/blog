@@ -878,7 +878,7 @@ minimatch@^3.0.2, minimatch@^3.0.4:
 minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
-
+  
 mkdirp@0.5.x:
   version "0.5.5"
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.5.tgz"
