@@ -6,25 +6,130 @@ mathjax: true
 
 # CFA Level 3
 
-## Chapter: Capital Market Expectations
+## Chapter: Capital Market Expectations (5-10%)
 
-### GK Model
+### Trend Rate of Growth
 
-GK Model, i.e. Grinold-Kroner model
+$$
+\%\text{Growth}= \%\text{labor input} + \%\text{capital per worker} + \%\text{total factor productivity}
+$$
+
+where:
+- Labor input: labor force (population, demographics) + labor participation (real wages, work/leisure decision, social factors)
+- capital per worker: increases labor productivity
+- total factor productivity: technological progress + changes in government policies
+
+### Business Cycle Phases
+
+The business cycle can be subdivided into five phases: 
+
+#### 1. Initial Recovery
+
+- Duration of a few months.
+- Business confidence rising.
+- Government stimulus provided by low interest rates and/or budget deficits.
+- Decelerating inflation.
+- Large output gap.
+- Low or falling short-term interest rates.
+- Bond yields bottoming out.
+- Rising stock prices.
+- Cyclical, riskier assets such as small-cap stocks and high yield bonds doing well.
+
+#### 2. Early Expansion
+
+- Duration of a year to several years.
+- Increasing growth with low inflation.
+- Increasing confidence.
+- Rising short-term interest rates.
+- Output gap is narrowing.
+- Stable or rising bond yields.
+- Rising stock prices.
+  
+#### 3. Late Expansion
+
+- High confidence and employment.
+- Output gap eliminated and economy at risk of overheating.
+- Increasing inflation.
+- Central bank limits the growth of the money supply.
+- Rising short-term interest rates.
+- Rising bond yields.
+- Rising/peaking stock prices with increased risk and volatility.
+
+#### 4. Slowdown
+
+- Duration of a few months to a year or longer.
+- Declining confidence.
+- Inflation still rising.
+- Short-term interest rates at a peak.
+- Bond yields peaking and possibly falling, resulting in rising bond prices.
+- Possible inverting yield curve.
+- Falling stock prices.
+
+#### 5. Contraction. 
+
+- Duration of 12 to 18 months.
+- Declining confidence and profits.
+- Increase in unemployment and bankruptcies.
+- Inflation topping out.
+- Falling short-term interest rates.
+- Falling bond yields, rising prices.
+- Stock prices increasing during the latter stages, anticipating the end of the recession.
+
+### Taylor rule
+
+central bank uses taylor rule to make monetary policy decisions, determined by the target interest rate using the neutral rate, expected GDP relative to its long-term trend, and expected inflation relative to its targeted amount. It can be formalized as follows:
+
+$$
+n_{target} = r_{neutral} + i_{expected} + \underbrace{[0.5(\text{GDP}_{expected} - \text{GDP}_{trend}) + 0.5(i_{expected} - i_{target})]}_{\text{adjustment}}  
+$$
+
+where:
+- $n_{target}$ = target nominal short-term interest rate
+- $r_{neutral}$ = neutral real short-term interest rate
+- $\text{GDP}_{expected}$ = expected GDP growth rate
+- $\text{GDP}_{trend}$ = long-term trend in the GDP growth rate
+- $i_{expected}$ = expected inflation rate
+- $i_{target}$ = target inflation rate
+
+### Macroeconomic linkage
+
+A country's current account and capital account are measures of macroeconomic linkages
 
 $$
 \begin{aligned}
-E(R_e) & = D/P + (\%\Delta{E} - \%\Delta{S}) + \%\Delta{P/E} \\
-    & = \underbrace{D/P - \%\Delta{S}}_{\text{expected cash flow return, i.e. income return}} + \underbrace{\%\Delta{E}}_{\text{expected nominal earnings growth}} + \underbrace{\%\Delta{P/E}}_{\text{expected repricing return}}
+\text{net exports} &= \text{net private saving} + \text{government surplus} \\
+X - M &= (S - I) + (T - G)
+\end{aligned}
+$$
+
+where:
+- X = exports
+- M = imports
+- S = private savings
+- I = investment spending
+- T = tax
+- G = government spending
+
+### GK Model
+
+GK Model, i.e. Grinold-Kroner model, states that the expected return of a stock is its dividend yield, plus the inflation rate, plus the real earnings growth rate, minus the change in stock outstanding, plus changes in the P/E ratio:
+
+$$
+\begin{aligned}
+E(R_e) & \approx \frac{D}{P} + \underbrace{(\%\Delta{E} - \%\Delta{S})}_{\text{growth rate of eps}} + \%\Delta{\frac{P}{E}} \\
+    & \approx \underbrace{\frac{D}{P} - \%\Delta{S}}_{\text{income (cash flow) return}} + \underbrace{\%\Delta{E}}_{\text{nominal earnings growth}} + \underbrace{\%\Delta{\frac{P}{E}}}_{\text{repricing return}} \\
+    & \approx \underbrace{\frac{D}{P} + g}_{\text{constant growth model}} + i - \%\Delta{S} - \%\Delta{\frac{P}{E}} \\
+    & \approx \frac{D}{P} + \underbrace{g + i}_{\text{Nominal GDP Growth}} && \text{(in the long run)}
 \end{aligned}
 $$
 
 where:
 - $E(R_e)$ = expected equity return
-- D/P = dividend yield
+- $\frac{D}{P}$ = dividend yield
 - $\%\Delta{E}$ = expected percentage change in total earnings
-- $\%\Delta{S}$ = expected percentage change in shares outstanding
+- $\%\Delta{S}$ = expected percentage change in shares outstanding, e.g. share repurchase means negative $\%\Delta{S}$, increasing $E(R_e)$
 - $\%\Delta{P/E}$ = expected percentage change in the P/E ratio
+- all the inputs should be forward-looking (i.e. forecast)
 
 note:
 - a share repurchase is a negative $\%\Delta{S}$ term, thus increasing $E(R_e)$
@@ -32,6 +137,56 @@ note:
 - limitation: assumption of infinite time horizon, ignoring investment horizon
 - limitation: a $\%\Delta{E}$ larger than GDP growth is not plausible, because it implies a perpetually expanding economy
 
+Real Estate Variation:
+
+$$
+E(R_{re}) = \text{cap rate} + \text{NOI growth rate} - \%\Delta{\text{cap rate}}
+$$
+
+### ST Model
+
+ST Model, i.e. Singer-Terhaar model, international CAPM
+
+$$
+\begin{aligned}
+  R_i &= R_f + \beta_{i, M} (R_M - R_f) && \text{(CAPM)} \\
+  RP_i &= \beta_{i, M} \times RP_M && (\because RP = R - R_f) \\
+       &= \rho_{i, M} \cdot \sigma_i \cdot \underbrace{(\frac{RP_M}{\sigma_M})}_{\text{Sharpe Ratio}} && (\because \beta_{i, M} = \rho_{i, M} \frac{\sigma_i}{\sigma_M})
+\end{aligned}
+$$
+
+Step1. Full integrated market
+
+$$
+\begin{aligned}
+  RP_i^G = \rho_{i, GM} \cdot \sigma_i \cdot (\frac{RP_{GM}}{\sigma_{GM}}) && (\text{+  e.g. liquidity premium})
+\end{aligned}
+$$
+
+Step2. Full segmented market
+
+$$
+\begin{aligned}
+  RP_i^S = \sigma_i \cdot (\frac{RP_{i}^S}{\sigma_{i}}) && (\text{+  e.g. liquidity premium})
+\end{aligned}
+$$
+
+Step3. weighted average risk premium
+
+$$
+RP  = \phi \cdot RP^G + (1 - \phi) \cdot RP^S
+$$
+
+where:
+- $\phi$ = degree of integration with the global markets
+
+Step4. expected return
+
+$$
+R = RP + R_f
+$$
+
+## Chapter: Asset Allocation (5-10%) 
 ### MVO 
 
 MVO, i.e. Mean-variance optimization
@@ -338,9 +493,19 @@ $$
 
 ### Hedge Fund Strategy
 
+six strategy categories:
+
+- 1. Equity related: 
+- 2. Event driven
+- 3. Relative value
+- 4. Opportunistic
+- 5. Specialist
+- 6. Multi-manager
+
+#### Equity-related
 Ranked by overall long exposure to market
 
-### L/S Equity: 
+#### L/S Equity: 
 
 L/S Equity, i.e. Long/Short Equity. The fund manager longs stocks that they think will rise, and shorts stocks that they believe will fall.
 
@@ -353,7 +518,7 @@ Example:
 
 - Long extension: net exposure of 100%. e.g. 130/30 fund (gross exposure 160%)
 
-### EMN:
+#### EMN:
 
 EMN, i.e. Equity Market Neutral
 
@@ -362,14 +527,34 @@ EMN, i.e. Equity Market Neutral
 - alpha seeking, low volatility
 - leverage is generally applied to achieve acceptable level of return
 
-### Dedicated Short Selling and Short-Biased
+#### Dedicated Short Selling and Short-Biased
 
-dedicated short-selling: pure shorts overpriced stocks (e.g. poorly managed, in declining market segment, or with deceiful accounting); typically 60% - 120% short (by holding the rest in cash).
+dedicated short-selling: pure shorts overpriced stocks (e.g. poorly managed, in declining market segment, or with deceitful accounting); typically 60% - 120% short (by holding the rest in cash).
 
 short-biased, similar except somewhat offset by a long exposure
 
 - negative corr with market, lower returns, greater volatility, little leverage
 - activist short selling: not only shorts, but also presents research that contends overprice
+
+### Investment Opportunity Set
+
+- traditional approach:
+
+![Liquidity-Based-Investment-Opportunity-Set](../photos/cfa-note\Liquidity-Based-Investment-Opportunity-Set.png)
+
+![Economic-Environment-Based-Investment-Opportunity-Set](../photos/cfa-note\Economic-Environment-Based-Investment-Opportunity-Set.png)
+
+- risk factor based approach:
+
+defining asset classes by statistically estimating their sensitivities to risk factors, e.g. economic growth and inflation, interest rates and credit spreads, or currency values, liquidity, capitalization, and value-versus-growth.
+
+advantage:
+- Identifying sources of risk that are common across asset classes, mitigating a limitation of the traditional approaches, which may classify investments into different classes even when they face largely the same risk factors, leading a manager to believe the portfolio is more diversified than it actually is.
+- by allowing a manager to analyze multiple dimensions of portfolio risk, this approach is useful for developing an integrated risk management framework. In this sense, it can be more useful than the traditional approaches for highlighting the primary drivers of portfolio risk.
+
+disadvantage:
+-  risk factor estimates can be sensitive to the period used for analysis
+-  The results may also be more difficult to communicate to decision makers and to implement compared to traditional approaches.
 
 ## Chapter: Private Wealth Management
 
@@ -424,7 +609,108 @@ A portfolio review enables the private wealth manager to reassess a client's IPS
 - Any changes or updates in the wealth manager's duties and responsibilities.
 - Any changes to IPS and portfolio review frequency.
 
-## Chapter: Performance Evaluation
+### Balance Sheet Management of Banks and Insurers
+
+how changes in the market value of assets, liabilities, and leverage levels affect the change in the market value of equity is:
+
+$$
+\%\Delta E = \%\Delta A \cdot M - \%\Delta L \cdot (M - 1)
+$$
+
+where:
+- $\%\Delta E$ = percentage change in the value of equity
+- $\%\Delta A$ = percentage change in the value of assets
+- $\%\Delta L$ = percentage change in the value of liabilities
+- M = leverage multiplier, A / E
+
+The sensitivity of the institution's equity capital to a unit change in the reference yield, y, of the assets (i.e., the modified duration of the equity capital) is:
+
+$$
+D_E = D_A \cdot M - D_L \cdot (M - 1) \cdot \frac{\Delta i}{\Delta y}
+$$
+
+where:
+- $D_E$ = modified duration of the institution's equity capital
+- $D_A$ = modified duration of the institution's assets
+- $D_L$ = modified duration of the institution's liabilities
+- M = leverage multiplier, A / E
+- $\frac{\Delta i}{\Delta y}$ = estimated change in yield of liabilities, i, relative to a unit change in yield of assets, y
+
+Expected volatility of the percentage changes in the market value of equity capital:
+
+$$
+\sigma_E^2 = M^2 \sigma_A^2 + (M - 1)^2 \sigma_L^2 - 2 M (M - 1) \sigma_A \sigma_L \rho_{AL}
+$$
+
+where:
+- $\sigma_E$ = standard deviation of percentage change in the market value of equity
+- $\sigma_A$ = standard deviation of percentage change in the value of assets
+- $\sigma_L$ = standard deviation of percentage change in the value of liabilities
+- M = leverage multiplier, A / E
+- $\rho_{AL}$ = correlation of percentage value changes in assets and liabilities
+
+### Lifetime Gifts vs Testamentary Bequests
+
+$$
+\begin{aligned}
+& FV_{\text{gift}} &&= [1 + r_g(1-t_g)]^n(1-T_g) \\
+& FV_{\text{bequest}} &&= [1 + r_e(1-t_e)]^n(1-T_e) \\
+& RV &&= \frac{FV_{\text{gift}}}{FV_{\text{bequest}}}
+\end{aligned}
+$$
+
+note:
+- RV of tax-free gift, $T_g = 0$
+
+### Life Insurance cost comparison
+
+- Net payment cost index: assumes the individual dies at the end of the horizon and cash value is not considered
+- Net surrender cost index: assumes the individual terminates the policy (insurance ceases) at the end of the horizon and the cash value is received
+
+steps:
+- 1. use annuity due (BGN mode) to compute FV of the premium
+- 2. use ordinary annuity (END mode) to compute FV of the dividend
+- 3. $FV_{\text{premium}} - FV_{\text{dividend}}$, further minus cash value if using new surrender cost index
+- 4. use annuity due (BGN mode) to compute annuitized cost
+
+## Chapter: Trading, Performance Evaluation
+
+### Implementation Shortfall
+
+IS (i.e. implementation shortfall) measures the total cost of trading, expressed as basis points of the total cost of the paper portfolio. e.g. buy order
+
+$$
+\text{IS} = \text{paper return} - \text{actual return}
+$$
+
+where:
+- $\text{paper return} = \text{total order size} \times (\text{close price} - \text{decision price})$
+- $\text{actual return} = \text{filled order size} \times (\text{close price} - \text{execution price}) - \text{commission}$
+
+Decomposition of IS. e.g. buy order
+
+- Execution cost = $\text{filled order size} \times (\text{execution price} - \text{decision price})$
+  - Delay cost = $\text{filled order size} \times (\text{arrival price} - \text{decision price})$: 
+  - trading cost (i.e. market impact cost) = $\text{filled order size} \times (\text{execution price} - \text{arrival price})$
+- Opportunity cost = $\text{unfilled order size} \times (\text{close price} - \text{decision price})$
+- Fixed cost = $\text{filled order size} \times \text{commission}$
+
+note:
+- for sell order, flip the sign
+- execution risk: adverse price movement occurs over the trading horizon (in volatile market)
+- market impact cost: trade at more adverse prices to execute a larger transaction (in illiquid market)
+
+### Market-adjusted cost
+
+market-adjusted cost removes the impact of market movements on trade cost.
+
+$$
+\text{market-adjusted cost} \text{(bps)} = \text{arrival cost} \text{(bps)} - \beta \times\text{index cost} \text{(bps)}
+$$
+
+where:
+- arrival cost = $\text{side} \times (\text{execution price} / \text{arrival price} - 1)$
+- index cost = $\text{side} \times (\text{index average price} / \text{index arrival price} - 1)$
 
 ### Return Attribution
 
@@ -435,6 +721,7 @@ $$
 where:
 - $R_i$: return from security i
 - $\Delta W_i$: active weight of security i, i.e. diff between portfolio and benchmark weight
+
 
 #### BHB Method, i.e. Brinson-Hood-Beebower
 
@@ -475,3 +762,129 @@ where:
 note:
 - the additional term: $\sum\limits_{i=1}^n(w_i - W_i) \cdot (-B) = (\sum\limits_{i=1}^n{w_i} - \sum\limits_{i=1}^n{W_i}) \cdot (-B) = (1 - 1) \cdot (-B) = 0$
 
+### Arithmetic vs Geometric Attribution
+
+|                  | Period 1 | Period 2 |
+|------------------|----------|----------|
+| Portfolio Return (R) | 5%       | 5%       |
+| Benchmark Return (B) | 3%       | 3%       |
+
+- arithmetic attribution: $R_A = R - B = 5\% - 3\% = 2\%$
+- geometric attribution: $R_A = \frac{1 + R}{1 + B} - 1 = \frac{1.05}{1.03} - 1 = 1.94\%$
+
+geometric attribution does compound across periods: $(1 + 1.94\%)^2 - 1 = (1.05/1.03)^2 - 1 = 3.92\%$
+
+### Performance Metrics
+
+#### Sharpe Ratio
+
+calculated as excess return over the risk-free rate (numerator) divided by standard deviation (denominator)
+
+$$
+S_A = \frac{\bar{R}_A - \bar{r}_f}{\hat{\sigma}_A}
+$$
+
+note:
+- denominator does not differentiate between volatility that is upside versus downside. Therefore, there is a penalty for all volatility, even if it is "good" volatility (addressed in Sortino Ratio below).
+
+#### Treynor Ratio
+
+similar to the Sharpe ratio, but the denominator is measured by beta, so only considering systematic risk rather than total risk
+
+$$
+T_A = \frac{\bar{R}_A - \bar{r}_f}{\hat{\beta}_A}
+$$
+
+note:
+- assume efficient markets
+- only useful in evaluating portfolios that have systematic risk and do not have unsystematic risk (i.e. well diversified)
+
+#### Information Ratio
+
+measures a portfolio's performance against the benchmark but accounts for differences in risk
+
+$$
+IR = \frac{E(r_p) - E(r_B)}{\sigma(r_p - r_B)}
+$$
+
+note:
+- the denominator is known as the tracking risk, or the variability in the portfolio performance with that of its benchmark
+
+#### Appraisal Ratio
+
+measures the ratio of active return, α, to the volatility of the residual term, $σ_ε$, both derived from a factor-based regression
+
+$$
+AR = \frac{α}{σ_ε}
+$$
+
+note:
+- higher AR indicates generating more active return per unit of active risk (as represented by residual risk $σ_ε$ also referred to as the "standard error of the regression") and is therefore a superior active manager according to this measure.
+- $σ_ε$, i.e. the standard error of the regression, is the volatility of the error term in a factor-based regression, representing the component of the volatility of returns not explained by the regression model factors. This component of volatility is generated by the manager taking active bets relative to the factors in the model, hence $σ_ε$ here is playing the role of active risk.
+- The AR is analogous to the IR. It looks at active return per unit of active risk. The only difference is that the AR uses a factor-based regression to estimate active return and active risk.
+
+
+#### Sortino Ratio
+
+only considers the standard deviation of the downside risk, in contrast to the Sharpe ratio, which considers all risk (e.g., both upside and downside). Positive volatility associated with the upside can be considered "good" volatility. As a result, the Sortino ratio can provide a more meaningful view of a portfolio's risk-adjusted performance than the Sharpe ratio.
+
+$$
+SR_D = \frac{E(r_p) - r_T}{\sigma_D}
+$$
+
+where:
+- $r_T$: target rate of return, or minimum acceptable return (MAR)
+- $\sigma_D$: target semideviation, measuring the standard deviation of returns below the target return
+
+note:
+- determination of MAR is subjective and specific to each investor, causing comparability problems
+
+
+#### Capture Ratio
+
+Capture Ratio (CR) = UC ratio / DC ratio, a measure of return asymmetry, > 1 = positive asymmetry (convex shape), < 1 = negative asymmetry (concave shape)
+
+$$
+\text{Capture Ratio} = \frac{\text{Upside Capture Ratio}}{\text{Downside Capture Ratio}} 
+$$
+
+e.g.
+- if portfolio return is 5%, and benchmark return is 4%, then upside capture ratio 5% / 4% = 125%, > 100% indicates outperformed
+- if portfolio return is -3%, and benchmark return is -4%, then downside capture ratio -3% / -4% = 75% < 100% indicates outperformed
+- then the capture ratio is 125% / 75% = 1.67, indicates a positively asymmetrical (convex) return profile
+
+note:
+- ideally, the manager would capture as much of the upside as possible and capture as little of the downside as possible to maximize the capture ratio
+- when betas are increasing (decreasing), momentum-driven strategies should have higher (lower) UC than value-driven strategies. A low-beta (high-beta) strategy will have lower (higher) UC and DC. Therefore, CRs can be used to confirm the investment strategy.
+
+#### Drawdown
+
+| Month    | Monthly Return | Drawdown | Cumulative Drawdown | Comments                |
+|----------|----------------|----------|---------------------|-------------------------|
+| 01/2018  | 3.14%          |          | 0.00%               |                         |
+| 02/2018  | –2.55%         | –2.55%   | –2.55%              | Drawdown phase begins   |
+| 03/2018  | –2.71%         | –2.71%   | –5.26%              |                         |
+| 04/2018  | –4.66%         | –4.66%   | –9.92%              |                         |
+| 05/2018  | –4.91%         | –4.91%   | –14.83%             |                         |
+| 06/2018  | –0.73%         | –0.73%   | –15.56%             | Maximum drawdown        |
+| 07/2018  | 2.18%          |          | –13.38%             | Recovery phase begins   |
+| 08/2018  | 3.11%          |          | –10.27%             |                         |
+| 09/2018  | 2.45%          |          | –7.82%              |                         |
+| 10/2018  | 3.65%          |          | –4.17%              |                         |
+| 11/2018  | 4.03%          |          | –0.14%              |                         |
+| 12/2018  | 4.14%          |          | 0.00%               | Drawdown recovered      |
+
+### Time-to-Cash Table
+
+liquidity classification schedule (time-to-cash table) is used to manage liquidity risk, including:
+
+- 1. amount of time needed to convert assets to cash
+- 2. liquidity classification level
+- 3. liquidity budget
+
+| Time to Cash | Liquidity Classification | Liquidity Budget (% of portfolio) |
+|--------------|--------------------------|----------------------------------|
+| < 1 week     | Highly liquid            | At least 5%                      |
+| < 1 quarter  | Liquid                   | At least 25%                     |
+| < 1 year     | Semi-liquid              | At least 40%                     |
+| > 1 year     | Illiquid                 | Up to 40%                        |
