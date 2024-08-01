@@ -118,7 +118,7 @@ $$
 \begin{aligned}
 E(R_e) & \approx \frac{D}{P} + \underbrace{(\%\Delta{E} - \%\Delta{S})}_{\text{growth rate of eps}} + \%\Delta{\frac{P}{E}} \\
     & \approx \underbrace{\frac{D}{P} - \%\Delta{S}}_{\text{income (cash flow) return}} + \underbrace{\%\Delta{E}}_{\text{nominal earnings growth}} + \underbrace{\%\Delta{\frac{P}{E}}}_{\text{repricing return}} \\
-    & \approx \underbrace{\frac{D}{P} + g}_{\text{constant growth model}} + i - \%\Delta{S} - \%\Delta{\frac{P}{E}} \\
+    & \approx \underbrace{\frac{D}{P} + g}_{\text{constant growth model}} + i - \%\Delta{S} + \%\Delta{\frac{P}{E}} \\
     & \approx \frac{D}{P} + \underbrace{g + i}_{\text{Nominal GDP Growth}} && \text{(in the long run)}
 \end{aligned}
 $$
@@ -186,7 +186,16 @@ $$
 R = RP + R_f
 $$
 
-## Chapter: Asset Allocation (5-10%) 
+### Dornbusch overshooting mechanism
+
+immediate capital flows will strengthen the currencies of countries with high expected returns to the point where the high return currency will be expected to depreciate going forward by the return differential.
+
+$$
+E(\%\Delta S_{d/f}) = (r^d - r^f) + (Term^d - Term^f) + (Credit^d - Credit^f) + (Equity^d - Equity^f) + (Liquid^d - Liquid^f)
+$$
+
+## Chapter: Asset Allocation (5-10%)
+
 ### MVO 
 
 MVO, i.e. Mean-variance optimization
@@ -199,13 +208,56 @@ where:
 - $\lambda$ = risk aversion score
 
 note:
-- if using decimal, times 0.5 instead of 0.005
+- E(R) and Var are in % terms, if using decimal, times 0.5 instead of 0.005
 
 limitation:
 - GIGO: results sensitive to inputs, e.g. expected return, standard deviation, and correlation
 - Concentrated asset class allocations: often results in a highly concentrated subset of asset classes, with zero allocation to others, causing lack of diversification of asset classes
 - Skewness and kurtosis: only looks at expected return and variance, while in realty, there is significant skewness and kurtosis in actual returns
 - Liquidity constraint: does not automatically incorporate liquidity constraints, often resulting in over-allocation to illiquid assets.
+
+### Black-Litterman Model
+
+Black-Litterman model, starts with the "optimal" portfolio weights from the global market portfolio and derive the expected returns consistent with those weights. Then adjust these return estimates (called implied returns) to do a traditional MVO and derive optimal portfolio weights for our particular investor.
+
+![Black-Litterman-Model](../photos/cfa-note/Black-Litterman-Model.png)
+
+e.g. 
+- Derives an expected return for emerging market equities of 6.5% and you believe this is too low, you could adjust the expected return by 75 basis points to 7.25%. You can then rerun the MVO using your adjusted return estimates.
+- Projects a return for U.K. large-cap equities of 8.2% and U.S. large-cap equities of 8.0% (a return differential of 20 basis points) and you believe that U.S. large-cap equities will outperform U.K. large-cap equities by 100 basis points, adjust the differential. 
+
+pros:
+- world market weights are fully diversified and theoretically optimal
+- less dependent on initial return estimates
+- resulting portfolios are likely to contain more asset classes
+
+### Heuristic approach
+
+#### 60/40 rule
+
+60% equity, 40% fixed income for the average individual
+
+#### 120 minus age
+
+120 − age = % allocation to equities, with the remainder going to fixed incomes.
+
+### Risk budgeting approach
+
+The goal of risk budgeting is to maximize return per unit of risk (e.g. total portfolio risk, active risk, or residual risk.)
+
+$$
+\begin{aligned}
+  \text{MCTR}_i &= \beta_{i, p} \times \sigma_p \\
+  \text{ACTR}_i &= w_i \times \text{MCTR}_i
+\end{aligned}
+$$
+
+where:
+- $\text{MCTR}_i$ = Marginal contribution to total risk, i.e. the change in total portfolio risk for a small change in the asset allocation to a specific asset class. i.e. the partial derivative of risk with respect to changes in portfolio allocations
+- $\beta_{i, p}$ = beta of asset class i with respect to the portfolio
+- $\sigma_p$ = total portfolio risk, i.e. standard deviation
+- $\text{ACTR}_i$ = Absolute contribution to total risk, 	% of risk contributed by $\text{position}_i$= $\text{ACTR}_i$ / total portfolio risk
+
 
 ## Chapter: Fixed Income
 
@@ -217,6 +269,53 @@ Four types of liability-driven investing (i.e. LDI)
 - Type II: Known future amount(s) but uncertain payout dates(s)
 - Type III: Uncertain future amount(s) but known payout dates(s)
 - Type IV: Uncertain future amount(s) and uncertain payout dates(s)
+
+### Immunization
+
+Steps to compute Portfolio statistics:
+
+1. Project the time to receipt (starting with the nearest to most distant) of every portfolio cash flow.
+2. Determine the aggregate portfolio cash flow in each period. The analysis uses six-month periods.
+3. Determine the portfolio IRR that equates future cash flows with the current market value of the portfolio.
+4. Use that IRR to determine the PV of each future cash flow from Step 2. (The sum of those PVs will be the current portfolio market value.)
+5. Calculate the PV weight (w) to apply to each payment as its PV (Step 4) divided by the sum of the PVs.
+6. For each cash flow, multiply its (w) by its time until receipt(t). The sum of the (w)(t)s is the portfolio's Macaulay duration. Duration is normally expressed in years, so if the cash flow periods were in six-month increments, divide by 2 (two six-month periods in a year) for annual duration.
+7. Portfolio dispersion is computed as the weighted average variance of when each cash flow is received around portfolio duration. (Remember, duration is just the weighted average of when all the cash flows are received).
+8. Portfolio convexity can be computed by summing for each cash flow: [(t)(t + 1)(w)] and then divide this sum by (1 + portfolio $IRR_{periodic}$)2.
+
+note:
+- Portfolio statistics should be used for ALM work rather than traditional weighted average calculations based on each bond. With flat yield curve, there's no diff. In an upward-sloping yield curve, portfolio duration and cashflow yield (i.e. IRR) will be higher-than-average duration and YTM of the bonds because portfolio statistics reflect all cash flows (and return) to be received and the longer maturity bonds will impact the portfolio for a longer time.
+- The goal of the immunized portfolio is to earn the initial portfolio IRR, not the average YTM of the bonds. Earning the IRR means the portfolio will grow to a sufficient FV to fund the liability.
+
+$$
+\text{convexity} = \frac{\text{Macaulay duration}^2 + \text{Macaulay duration} + \text{dispersion}}{(1 + \text{periodic IRR})^2}
+$$
+
+The dispersion and convexity will indicate the risk exposure of the immunization strategy to structural risk from shifts and twists in the yield curve.
+
+#### Cash flow matching strategy
+
+the safest approach, may allow accounting defeasance to legally set aside assets dedicated to meet the liability (both to be removed from the B/S)
+
+bullet, barbell, Laddered portfolios (created by bonds directly or target-date bond ETFs) 
+
+#### Duration matching strategy
+
+more flexible and generally practical approach to funding multiple liabilities. 
+
+for single liability:
+-  PVA >= PVL
+-  $MD_A$ = $MD_L$
+-  minimize Convexity
+
+for multiple liabilities:
+- PVA >= PVL
+- $BPV_A = BPV_L$
+- $C_A >= C_L$ slightly
+
+#### Contingent immunization (CI)
+
+a hybrid active/passive strategy. As long as a surplus is significant, the portfolio can be actively managed. if the strategy is unsuccessful, the surplus will shrink, and the portfolio must be immunized before the surplus declines below zero
 
 ### Hedge Duration Gap between PVA and PVL
 
@@ -256,6 +355,43 @@ $$
 note:
 - the payoff looks like a short risk reversal, with interest rate as X-axis
 
+#### Example: choosing an optimal strategy
+
+The choice of optimal strategy will depend on the manager's view of interest rates. Consider the DB plan with a duration gap and a need to increase asset duration.
+
+1. Enter a receive-fixed swap versus pay MRR.
+2. Buy a receiver swaption.
+3. Enter a zero-cost collar composed of buying the receiver swaption and selling a payer swaption.
+
+| Premium Cost           | Cost  |
+| ---------------------- | ----- |
+| 2.5% fixed-rate swap   | None  |
+| 2.3% receiver swaption | 75 bp |
+| 3.3% payer swaption    | 75 bp |
+
+- The receive 2.5% SFR swap is optimal if the manager expects the new SFR will be at or below 2.5%.
+  - This is equivalent to buying 2.5% fixed-rate bonds (financed by borrowing at MRR), increasing asset duration and BPV. The plan will benefit from the decline in rates.
+  - Buying the 2.3% receiver swaption is suboptimal because there is an initial cost, and the 2.3% fixed rate received by the plan is lower.
+  - The collar (buy the 2.3% receiver swaption; sell the 3.3% payer swaption) is suboptimal because the 2.3% fixed rate received by the plan is lower. The payer swaption buyer has no rational reason to exercise his right with the new SFR below 3.3%.
+
+- The collar is optimal if the manager expects the new SFR will be above 2.5% but below 3.3%.
+  - The collar (buy the 2.3% receiver swaption and sell the 3.3% payer swaption) has no intrinsic value, which is the best choice.
+    - The right to receive 2.3% when rates are above 2.5% has no value.
+    - The payer swaption buyer has no rational reason to exercise his right with new SFRs below 3.3%.
+  - The other hedges have negative value or zero value with an up-front cost.
+    - The swap of receive 2.5% will have negative value when SFRs are above 2.5%.
+    - The receiver swaption (right to receive 2.3%) has no value when new SFRs are above 2.5% and required an initial cost.
+
+- Buying the 2.3% receiver swaption is optimal at some level of new SFRs above 3.3%.
+  - The 2.3% receiver swaption has no intrinsic value with new SFRs above 3.3%. But there was an initial premium cost. This is the best case at some level of SFRs above 3.3%.
+  - The receive 2.5% swap has increasing negative value as new SFRs increase above 3.3%.
+  - The collar also begins to have increasing negative value as new SFRs increase above 3.3%.
+    - The receive 2.3% swaption has no value.
+    - The 3.3% payer swaption increases in value as SFRs increase above 3.3%, and this is negative value to the seller (the plan).
+    - As SFRs increase, that negative value will at some point exceed the initial cost of the receiver swaption, and the receiver swaption would become optimal.
+    - The breakeven rate to make the payer swaption optimal is above 3.3%.
+
+
 ### Fixed-income return decomposition
 
 - 1. rolling yield:
@@ -264,6 +400,78 @@ note:
 - 2. expected price change due to change in benchmark yield = $(-MD \times \Delta{Y}) + (1/2 \times C \times \Delta{Y}^2)$
 - 3. expected price change due to change in credit spreads = $(-MD \times \Delta{S}) + (1/2 \times C \times \Delta{S}^2)$
 - 4. expected currency G/L
+
+### Credit Spread Measures
+
+#### Yield Spread
+
+yield spread or benchmark spread := bond YTM - closest maturity on-the-run govt bond
+
+#### g-spread
+
+g-spread := bond YTM - interpolated YTM of the two adjacent maturity on-the-run govt bonds
+
+#### i-spread 
+
+i-spread, interpolated spread := bond YTM - maturity interpolated swap fixed rate
+
+#### asset swap spread
+
+ASW := bond fixed coupon - maturity interpolated swap fixed rate
+
+represents the spread that the bond is offering over the floating market reference rate (MRR) over its life (assuming the bond is trading close to par). Since the swap can swap fixed rate with MRR, buying the bond and payer swap can synthesize MRR + ASW return. 
+
+#### z-spread
+
+z-spread, zero-volatility spread, takes into account the term structure of spot rates. It uses a trial-and-error calculation to determine a single spread that, when added to risk-free spot rates, discounts the bond's future cash flows back to its current market value.
+
+note: **CDS Spread**, where the protection buyer pays a standardized fixed coupon adjusted by an up-front payment/receipt to reflect the fair value of the protection, should in theory, be equal to the z-spread that is earned on the underlying bond, since both are essentially a risk premium paid to the party facing the credit risk of the bond. However, differences between the CDS spread and the z-spread can occur due to technical reasons, such as the underlying bond price trading away from par, accrued interest on the underlying bond, and idiosyncratic features of the CDS protection. The $\text{CDS basis} := \text{CDS spread} - \text{z-spread}$. This is a useful measure for those trading CDS contracts.
+
+#### option adjusted spread
+
+option adjusted spread, OAS, is the only spread measure appropriate for assessing the credit/liquidity risk of bonds with embedded options. It uses an assumption of interest rate volatility to build an interest rate tree of possible paths for forward risk-free interest rates. Future cash flows are adjusted for the optionality of the bond along each path (i.e., to reflect whether the option would be exercised). The OAS is then a trial-and-error calculation to determine a single spread that, when added to every node of the interest rate tree of risk-free rates, discounts the bond's adjusted future cash flows back to its current market value. By adjusting the cash flows of the bond to reflect expected interest rate volatility, the uncertainty of the cash flows due to the optionality of the bond has been removed, and the resulting OAS, therefore, does not include any impact of the option on the spread. The OAS measures the spread that is earned for facing the credit and liquidity risk of the issuer—the impact of the option has been removed from the spread.
+
+The OAS is the best measure for consistent comparison of the spreads on bonds with embedded options (e.g., callable, putable) and bonds without embedded options.
+
+### Excess Spread
+
+excess spread: spread in excess of the fair spread for suffering credit losses.
+
+$$
+\text{Excess Spread} := \text{Spread} - \text{EffSpreadDur} \times \Delta \text{Spread} - \underbrace{\text{POD} \times \text{LGD}}_{\text{credit loss, credit spread}}
+$$
+
+Where:
+- EffSpreadDur: Effective Spread Duration
+- POD: Probability of Default
+- LGD: Loss Given Default, i.e. loss severity, 1 - RR (recovery rate)
+- `Spread` and `POD` should be de-annualized to match holding period, if given as annualized
+
+note: 
+- Credit valuation adjustment (CVA), computed as the present value of sum of expected credit losses := POD * LGD for all periods scaled up by the expected exposure at the time of default. CVA represents the discount that the credit-risky instrument should trade below an equivalent risk-free security in order to compensate investors for their expected credit losses.
+
+### butterfly strategy
+
+profit from a view that the curvature of the yield curve is likely to change, by combining long and short positions in bullets (i.e. body) and barbells (wings)
+
+
+butterfly spread = - (short-term yield) + (2 x medium-term yield) - long-term yield
+
+note:
+- butterfly spread increase == curvature increase == negative butterfly twist == negative butterfly view (frowns more)
+
+### Credit Spread in Economic Cycle
+
+|                        | Early Expansion (Recovery) | Late Expansion | Peak           | Contraction (Recession) |
+| ---------------------- | -------------------------- | -------------- | -------------- | ----------------------- |
+| Corporate Defaults     | Peak                       | Falling        | Stable         | Rising                  |
+| Credit Spread Level    | Stable                     | Falling        | Rising         | Peak                    |
+| Credit Spread Slope IG | Stable                     | Upward sloping | Upward sloping | Flat                    |
+| Credit Spread Slope HY | Inverted                   | Upward sloping | Upward sloping | Inverted                |
+| Corporate Leverage     | Falling                    | Stable         | Rising         | Peak                    |
+
+![credit-spread-economic-cycle](..\photos\cfa-note\credit-spread-economic-cycle.png)
+
 
 ### CIRP
 
@@ -280,26 +488,100 @@ where:
 
 Consider an Australian investor who wishes to hedge their exposure to a coupon-paying U.S. Treasury bond. Assume current USD/AUD = 0.8
 
-| Position                         | At Initiation                                            | Periodic Semiannual Payments for Next 10 Years | At the End                                                |
-|----------------------------------|----------------------------------------------------------|------------------------------------------------|-----------------------------------------------------------|
-| **U.S. Treasury Bond**           | Pay out USD 100 million to purchase the U.S. bond        | Receive-fixed USD bond coupon                   | Receive USD 100 million par at maturity of bond           |
-| **Fixed-Fixed Cross-Currency Swap** | Receive USD 100 million and pay AUD 125 million in exchange of principal amounts | Pay-fixed USD leg                             | Pay USD 100 million and receive AUD 125 million in exchange of principal amounts |
-| **Net Flow**                     | Pay AUD 125 million principal outflow                    | Receive-fixed AUD payment                       | Receive AUD 125 million principal inflow                  |
+| Position                            | At Initiation                                                                    | Periodic Semiannual Payments for Next 10 Years | At the End                                                                       |
+| ----------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------- |
+| **U.S. Treasury Bond**              | Pay out USD 100 million to purchase the U.S. bond                                | Receive-fixed USD bond coupon                  | Receive USD 100 million par at maturity of bond                                  |
+| **Fixed-Fixed Cross-Currency Swap** | Receive USD 100 million and pay AUD 125 million in exchange of principal amounts | Pay-fixed USD leg                              | Pay USD 100 million and receive AUD 125 million in exchange of principal amounts |
+| **Net Flow**                        | Pay AUD 125 million principal outflow                                            | Receive-fixed AUD payment                      | Receive AUD 125 million principal inflow                                         |
 
 
 the fixed-fixed cross-currency swap can be synthesized by:
 
-| Swap                          | Description             | Interest Paid | Interest Received | Principal Exchange at Outset                       | Principal Exchange at End                       |
-|-------------------------------|-------------------------|---------------|-------------------|---------------------------------------------------|------------------------------------------------|
-| **A**                         | USD interest rate swap  | USD Fixed     | USD Floating      | None                                              | None                                           |
-| **B**                         | AUD interest rate swap  | AUD Floating  | AUD Fixed         | None                                              | None                                           |
-| **C**                         | Cross-currency basis swap | USD Floating  | AUD Floating      | Receive in USD principal, pay out AUD principal   | Pay out USD principal, receive in AUD principal |
+| Swap  | Description               | Interest Paid | Interest Received | Principal Exchange at Outset                    | Principal Exchange at End                       |
+| ----- | ------------------------- | ------------- | ----------------- | ----------------------------------------------- | ----------------------------------------------- |
+| **A** | USD interest rate swap    | USD Fixed     | USD Floating      | None                                            | None                                            |
+| **B** | AUD interest rate swap    | AUD Floating  | AUD Fixed         | None                                            | None                                            |
+| **C** | Cross-currency basis swap | USD Floating  | AUD Floating      | Receive in USD principal, pay out AUD principal | Pay out USD principal, receive in AUD principal |
 
 ### Unhedged Cross-Currency Carry Trade
 
 the carry trade involves borrowing in a low interest rate currency and depositing in a high interest rate currency, facing risk that high interest rate currency weakens.
 
 total pnl = foreign returns - cost of funds + FX rate (D/F) return
+
+### CDS
+
+The protection buyer pays a regular fixed coupon to the protection seller periodically over the life of the contract in return for a payment upon a prespecified credit event on a reference issuer (or issuers). The size of the CDS is specified at the outset and referred to as the notional principal.
+
+![cds-mechanics](..\photos\cfa-note\cds-mechanics.png)
+
+characteristics:
+- OTC traded credit derivative
+- Bilateral agreement
+- Counterparty credit risk
+
+The fixed coupon paid periodically by the protection buyer is standardized to **1% for investment-grade (IG)** issuers and **5% for high-yield (HY)** issuers for operational reasons, to make  settlement and clearing of contracts more straightforward. Note this standardized coupon is not the fair premium that should be regularly paid by the protection buyer (referred to as the **CDS spread**) for the credit protection based on credit pricing models.
+
+| Scenario                  | Upfront Premium                                                             |
+| ------------------------- | --------------------------------------------------------------------------- |
+| CDS spread = fixed coupon | None                                                                        |
+| CDS spread > fixed coupon | \[(CDS spread – fixed coupon) × EffSpreadDurCDS\] paid to protection seller |
+| CDS spread < fixed coupon | \[(fixed coupon – CDS spread) × EffSpreadDurCDS\] paid to protection buyer  |
+
+CDS Price:
+
+$$
+\text{CDS Price} ≈ 1 + (\text{Fixed Coupon} - \text{CDS Spread}) \times \text{EffSpreadDurCDS}
+$$
+
+
+note: 
+- This pricing convention conforms with the usual inverse price/yield relationship seen in fixed income because, when CDS spreads rise, the CDS price will fall and vice versa.
+- For higher-quality issuers, the CDS spread will be lower than the fixed coupon and the CDS price will be above par. For lower-quality issuers, the CDS spread will be higher than the fixed coupon and the CDS price will be below par.
+- protection sell's pnl is computed as [CDS price (t-1) - CDS price (t)] x Notional Principal
+
+| Position                    | Profit if CDS Spreads | Profit if CDS Prices |
+| --------------------------- | --------------------- | -------------------- |
+| Sell protection (long risk) | Fall                  | Rise                 |
+| Buy protection (short risk) | Rise                  | Fall                 |
+
+note:
+- buy protection == long CDS spread == short risk == decrease exposure == short bond == short price 
+
+#### CDS long-short strategy
+
+involves buying protection on issuers, where credit spreads are expected to widen relative to other issuers, while simultaneously selling protection on issuers, where credit spreads are expected to narrow relative to other issuers.
+
+#### CDS curve trades
+
+buying protection at maturities where CDS spreads are expected to rise relative to other maturities and selling protection at maturities where spreads are expected to fall relative to other maturities.
+
+### Credit Spread Curve Strategies
+
+profit from a view on the shape or level of the credit spread curve.
+
+#### Static Credit Spread Curve Strategies
+
+A manager who believes that the current credit spread curve will remain unchanged can earn excess return in the cash market through either:
+
+- lowering the average credit rating of their bond portfolio;
+- increasing the spread duration by buying and holding longer-dated bonds.
+
+#### Dynamic Credit Spread Curve Strategies
+
+e.g. expect upward-sloping CDS curve to flatten, buy ST CDS protection, sell LT CDS protection
+
+| Economic Stage    | Typical Curve Feature                  | Cash                     | CDS                           |     |
+| ----------------- | -------------------------------------- | ------------------------ | ----------------------------- | --- |
+| Economic recovery | HY spreads narrow more than IG spreads | Buy HY bonds             | Sell HY protection            |
+|                   |                                        | Sell IG bonds            | Buy IG protection             |
+|                   | HY credit curve steepens               | Buy short-term HY bonds  | Sell short-term HY protection |
+|                   |                                        | Sell long-term HY bonds  | Buy long-term HY protection   |
+| Economic slowdown | HY spreads widen more than IG spreads  | Buy IG bonds             | Sell IG protection            |
+|                   |                                        | Sell HY bonds            | Buy HY protection             |
+|                   | HY credit curve flattens/inverts       | Buy long-term HY bonds   | Sell long-term HY protection  |
+|                   |                                        | Sell short-term HY bonds | Buy short-term HY protection  |
+
 
 ## Chapter: Equity
 
@@ -438,7 +720,60 @@ Growth-based approaches attempt to identify companies with revenues, earnings, o
 - Shorter-term earnings momentum.
 - GARP (growth at a reasonable price); looking for growth at a reasonable valuation. Often this strategy will use the P/E-to-growth (PEG) ratio, which is calculated as the stock's P/E ratio divided by expected earnings growth in percentage terms.
 
+### Portfolio Management Approaches
+
+| Investment Style          | Description                                                                                                       | Active Share and Active Risk                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Pure indexing             | No active positions: portfolio is equal to the benchmark                                                          | Zero Active Share and zero active risk                                                                                     |
+| Factor neutral            | No active factor bets—idiosyncratic risk low if diversified                                                       | Low active risk—Active Share low if diversified                                                                            |
+| Factor diversified        | Balanced exposure to risk factors and minimized idiosyncratic risk through high number of securities in portfolio | Reasonably low active risk—high Active Share from large amount of securities used that are unlikely to be in the benchmark |
+| Concentrated factor bets  | Targeted factor bets—idiosyncratic risk likely to be high                                                         | High Active Share and high active risk                                                                                     |
+| Concentrated stock picker | Targeted individual stock bets                                                                                    | Highest Active Share and highest active risk                                                                               |
+
+![Portfolio-Management-Approaches](../photos/cfa-note/Portfolio-Management-Approaches.png)
+
+- A closet indexer is defined as a fund that advertises itself as being actively managed but is substantially similar to an index fund in its exposures
+- A sector rotator would need to have large permitted deviations in sector weights
+- A stock picker would need to have large permitted deviations in individual security weights
+-  A diversified multi-factor investor has large sector deviations and limited single-security deviation, and low tracking error
+
 ## Chapter: Derivative and Currency Management
+### Option Strategy
+
+#### Covered Call
+
+#### Protective Put
+
+#### Collar
+
+#### Straddle
+
+#### Bull Spread and Bear Spread
+
+#### Calendar Spread
+
+![option-theta](..\photos\cfa-note\option-theta.png)
+
+Options that are close to ATM have the highest thetas, and these increase as expiration approaches. In other words ATM options lose time value at an increasing rate as they mature.
+
+calendar spreads exploit the difference in theta between close-to-expiry and more-distant-from-expiry options. For options that are near to ATM, the nearer-dated options will have a higher absolute value of theta (more negative) than longer-dated options.
+
+A long calendar spread: **buying longer-dated** options and **selling shorter-dated** options with the same strike and underlying. In principle the premium on the shorter-dated should fall faster than the premium on the longer-dated. Thus more value is gained on the short position than is lost on the long position, and a net profit is realized. The options need to be close to ATM, and little movement should be anticipated in the underlying over the period to expiry of the nearer-dated option (large movement might undermine the profit from the strategy). Both options will either be calls or puts, and the choice between calls and puts will reflect the investor's view on the longer-term prospects for the stock (calls if bullish, puts if bearish).
+
+A short calendar spread: **selling longer-dated** options and **buying shorter-dated** options with the same strike and underlying. When options are sufficiently ITM or OTM the thetas are relatively higher for the longer-dated options.  the belief is that the longer-dated options will lose time value relatively more rapidly, thus the position as a whole should gain. The short calendar spread strategy is vulnerable, however, to the underlying moving so the options end up ATM when the shorter-dated option expires (so the longer-dated option premiums rise, unless implied volatility also falls, and overall there is a loss since we are short). If the stock moves at all during the period of the strategy, it would be better for it to move a lot.
+
+In general:
+
+- A long calendar spread will benefit from a stable market or an increase in implied volatility.
+- A short calendar spread will benefit from a big move in the underlying market or a decrease in implied volatility.
+
+#### Risk reversal
+
+volatility skew, is where implied volatility increases for more OTM puts, and decreases for more OTM calls. This is explained by OTM puts being desirable as insurance against market declines (so their values are bid up by higher demand, and higher values imply higher volatility), while the demand for OTM calls is low.
+
+If a trader believes that put implied volatility is relatively too high, compared to that for calls, a long risk reversal could be created by buying the OTM call (seen as relatively underpriced) and selling the OTM put (seen as relatively overpriced) for the same expiration.
+
+The net positive delta exposure is then hedged by shorting the underlying stock. 
 
 ### BPVHR
 
@@ -469,25 +804,192 @@ $$
 }
 $$
 
-### Excess Spread
+### Cross-Currency Basis & Swap
 
-excess spread: spread in excess of the fair spread for suffering credit losses.
+Cross-Currency Basis represents the additional cost of borrowing dollars synthetically with a currency swap relative to the cost of borrowing directly in the USD cash market. Typically, when describing basis we view it from the foreign-currency perspective rather than the USD perspective. If the cost of borrowing dollars synthetically via a swap is greater than the cost of direct USD borrowing, the foreign currency is said to be exhibiting negative basis. Most currencies have shown a negative basis against the dollar since the financial crisis of 2008. The implication is that the USD borrower must accept a lower interest rate on the foreign-currency interest payments it receives.
+
+**currency swap** only exchanges interest payments. But **cross-currency basis swap** exchanges both interest and notional principal of each currency at the beginning and end of the swap. Typically, the periodic payments are floating for floating.
+
+Rationale:
+A foreign company requiring USD, might not have access to direct USD borrowing or finds it prohibitively expensive.
+
+e.g.:
+A French company requires $50 million to invest in US. The cost to borrow USD directly is MRR + 100 bp. it decided to borrow for 4 years in euros at Euribor + 60 bp with interest paid quarterly, and enter a currency swap to exchange euros for dollars. Basis on the Eurodollar swap is being quoted at –20 bps. The swap pays variable interest on both legs on a quarterly settlement basis. The current $/€ exchange rate is $1.1815.
+
+The three-month euro reference rate is 1.5% and U.S. dollar reference rate is 2.0% at swap initiation. Three months later at the first settlement date, the three-month euro reference rate is 1.6% and the U.S. dollar reference rate is 1.9%.
+
+- At initiation
+
+Principal flows: $50,000,000 / $1.1815 = €42,319,086
+
+the company borrows €42,319,086 and exchange it for $50,000,000. These amounts will be swapped back at maturity.
+
+- At first settlement
+
+*Pays:*
+- € interest on the loan: €42,319,086 × (0.015 + 0.006) × 90 / 360 = €222,175
+- $ interest on the swap: $50,000,000 × 0.02 × 90 / 360 = $250,000
+
+*Receives:*
+- € interest on the swap: €42,319,086 × (0.015 − 0.002) × 90 / 360 = €137,537
+
+*Cost of $ financing:*
+- Cost of borrowing $ direct: $50,000,000 × (0.02 + 0.01) × 90 / 360 = $375,000 (U.S. dollar reference rate + 100 bp)
+- Cost of synthetic $ borrowing: $50,000,000 × (0.02 + 0.006 + 0.002) × 90 / 360 = $350,000 (U.S. dollar reference rate + 80 bp)
+- Net benefit of swap: $375,000 − $350,000 = $25,000
+- Net benefit of swap: $50,000,000 (1% − 0.8%) × 90 / 360 = $25,000
+
+- At second settlement
+
+*Pays:*
+- € interest on the loan: €42,319,086 × (0.016 + 0.006) × 90 / 360 = €232,755
+- $ interest on the swap: $50,000,000 × 0.019 × 90 / 360 = $237,500
+
+*Receives:*
+- € interest on the swap: €42,319,086 × (0.016 − 0.002) × 90 / 360 = €148,117
+
+*Cost of $ financing:*
+- Cost of borrowing $ direct: $50,000,000 × (0.019 + 0.01) × 90 / 360 = $362,500 (U.S. dollar reference rate + 100 bp)
+- Cost of synthetic $ borrowing: $50,000,000 × (0.019 + 0.006 + 0.002) × 90 / 360 = $337,500 (U.S. dollar reference rate + 80 bp)
+- Net benefit of swap: $362,500 − $337,500 = $25,000
+- Net benefit of swap: $50,000,000 (1% − 0.8%) × 90 / 360 = $25,000
+
+
+note:
+- same principal amounts are exchanged at maturity as initialization. (i.e. no exchange risk on principal)
+- the European company is the **dollar payer**; the swap dealer is the **euro payer**.
+- By borrowing in euros and entering a currency swap, the company has locked into a cost of the U.S. dollar reference rate + 80 bp for their USD borrowing, reflecting the 60 bp spread above the euro reference rate on the loan and the –20 bp on the swap.
+
+### VIX
+
+CBOE Volatility Index, i.e. VIX, measures implied volatility in the S&P 500 Index over a forward period of 30 days. VIX computes a weighted average of implied volatility inferred from S&P 500 traded options (calls and puts) with an average expiration of 30 days. The VIX Index value is the annualized standard deviation of the expected +/− percentage moves in the S&P 500 Index over the following 30 days.
+
+e.g. if the VIX was at 20, we could interpret it as telling us that the market expects that the S&P will stay within a +/−20% range over one year with a 68% level of confidence. This implies a range +/− $\frac{20}{\sqrt{12}} = 5.77\%$ over the next 30-day period.
+
+#### VIX futures
+
+The VIX futures price can be interpreted as the expected S&P 500 Index volatility in the 30-day period after the futures contract expiration date. An equity holding can be protected from extreme downturns (tail risk) by buying VIX futures. Selling VIX futures creates a short volatility position and captures the volatility risk premium embedded in S&P 500 options. Short volatility positions can result in large losses if expected volatility rises significantly. The term structure of VIX futures can provide insights into the market's expectations of volatility over time.
+
+#### VIX Options
+
+VIX options are cash-settled European-style options. VIX options can only be exercised at contract maturity; therefore, the value of the option is determined by the expectations of VIX at the contract expiry.
+
+#### Other volatility Indexes
+
+Volatility indexes also exist on European stock market indexes. Using similar methodology to the VIX Index, VSTOXX is an implied volatility-based index based on the EURO STOXX 50 Index. VFTSE is a volatility index based on the FTSE 100, and VDAX-NEW is based on the DAX 30.
+
+### Variance Swaps
+
+The party receiving the variable payment (the purchaser) will gain on the contract when the realized variance is greater than the implied variance and will lose when the realized variance is less than the implied variance. A variance swap can, therefore, be viewed as a pure play on whether realized variance will be higher or lower than expected variance (implied variance) over the tenor of the swap.
+
+![variance-swap](../photos/cfa-note/variance-swap.png)
+
+There is no exchange of notional principal at the initiation of the swap. A variance swap also has no interim settlement periods. With a variance swap, there is a single payment at the expiration of the swap based on the difference between actual and implied variance over the life of the swap:
 
 $$
-\text{Excess Spread} := \text{Spread} - \text{EffSpreadDur} \times \Delta \text{Spread} - \underbrace{\text{POD} \times \text{LGD}}_{\text{credit loss}}
+\text{settlement amount}_T = (\text{variance notional})(\text{realized variance} - \text{variance strike})
 $$
 
-Where:
-- EffSpreadDur: Effective Spread Duration
-- POD: Probability of Default
-- LGD: Loss Given Default
-- `Spread` and `POD` should be de-annualized to match holding period, if given as annualized
+The value of the swap is zero at initiation because implied volatility is the best ex ante estimate of realized volatility.
 
-### CDS Price
+Realized variance is calculated by taking the natural log of the daily price relatives, the closing price on day t, divided by the closing price on day t − 1:
 
 $$
-\text{CDS Price} := 1 + (\text{Fixed Coupon} - \text{CDS Spread}) \times \text{EffSpreadDur}
+R_i = ln(P_t / P_{t-1})
 $$
+
+If having N days of traded prices, we can compute N − 1 price relatives (R):
+
+$$
+\text{daily variance} = \sum_{i=1}^{N-1} \frac{R_i^2}{(N-1)}
+$$
+
+annualized variance = daily variance × 252
+
+The notional amount for a variance swap can be expressed as either variance notional ($N_{var}$) or vega notional ($N_{vega}$).
+
+$$
+\begin{aligned}
+pnl &= N_{\text{var}} \times (\sigma^2 - K^2) \\ 
+    &= N_{\text{vega}} \times (\frac{\sigma^2 -K^2}{2K})
+\end{aligned}
+$$
+
+since:
+$$
+\text{variance notional} = \frac{\text{vega notional}}{2 \times \text{strike price (K)}}
+$$
+
+### Currency Quotes
+
+The Price and Base Currencies: The base currency is the denominator of the exchange rate and it is priced in terms of the numerator. Unless clearly identified otherwise, the terms "buy" and "sell" refer to the base currency. e.g. sell spot 1,000,000 at CAD/USD 0.9800 is assumed to mean sell for "immediate delivery" 1,000,000 U.S. dollars and buy 980,000 Canadian dollars.
+
+Bid/Asked Rules: Currencies are quoted with a bid/offered or bid/asked price. By convention, the smaller number is written first and the larger number is second. e.g. A quote of 0.9790/0.9810 CAD/USD. The customer pays the bid/ask spread, paying more and/or receiving less in the transaction.
+
+Forward points are an adjustment to the spot price to determine the forward price, e.g.
+
+| Spot Quote | Forward Points | Points with Decimal Adjusted | Forward Price                |
+| ---------- | -------------- | ---------------------------- | ---------------------------- |
+| 1.33       | 1.1            | 1.1 / 100 = 0.011            | 1.33 + 0.011 = 1.341         |
+| 2.554      | –9.6           | –9.6 / 1,000 = –0.0096       | 2.554 − 0.0096 = 2.5444      |
+| 0.7654     | 13.67          | 13.67 / 10,000 = 0.001367    | 0.7654 + 0.001367 = 0.766767 |
+
+Spot and forward bid/asked, e.g.
+
+| Maturity/Settlement | Spot Quote/Forward Points |
+| ------------------- | ------------------------- |
+| Spot AUD/EUR        | 1.2571/1.2574             |
+| 30 days             | –1.0/–0.9                 |
+| 90 days             | +11.7/+12.0               |
+
+FX Swap, a misnomer, rolls over a maturing forward contract using a spot transaction into a new forward contract. An existing forward is "swapped" for another forward transaction.
+
+### Currency effects on return and risk
+
+#### return
+
+$$
+\begin{aligned}
+  R_{DC} &= (1+R_{FC})(1+R_{FX}) - 1 \\ 
+         &\approx R_{FC} + R_{FX}
+\end{aligned}
+$$
+
+note:
+- $R_{DC}$ = asset return denoted in domestic currency
+- $R_{FC}$ = asset return denoted in foreign currency
+- $R_{FX}$ = percentage change in value of the foreign currency denoted in D/F (use domestic/foreign and then solve as EV / BV − 1 = $R_{FX}$)
+
+#### risk
+
+$$
+\sigma_{R_{DC}}^2 \approx \sigma_{R_{FC}}^2 + \sigma_{R_{FX}}^2 + 2\sigma_{R_{FC}}\sigma_{R_{FX}}\rho_{(R_{FC}, R_{FX})}
+$$
+
+note:
+- for domestic investor, $\sigma_{R_{DC}}^2$ is usually higher than $\sigma_{R_{FC}}^2$, meaning more risk
+- correlation between $R_{FC}$ and $R_{FX}$ matters:
+  - if positive, $R_{FC}$ is amplified by $R_{FX}$, increasing the volatility to domestic investor
+  - if negative, $R_{FC}$ is dampened by $R_{FX}$, decreasing the volatility to domestic investor
+
+special case if $R_{FC}$ is a risk-free return:
+
+$$
+\sigma{R_{DC}} = \sigma_{R_{FX}} (1 + R_{FC})
+$$
+
+minimum variance hedge ratio (MVHR) is a mathematical approach to determining the hedge ratio. When applied to currency hedging, it is a regression of the past changes in value of the portfolio $R_{DC}$ to the past changes in value of the $R_{FX}$ to minimize the variance of $R_{DC}$. The hedge ratio is the beta (slope coefficient) of that regression. e.g.
+
+$R_{DC}$ = 0.12 + 1.25(%Δ$S_{USD/EUR}$) + ε
+
+hedge ratio = 1.25, the manager will short EUR 1.25 times a long EUR exposure in the portfolio
+
+### NDFs
+
+NDFs, i.e. Non-Deliverable Forward, alternative to deliverable forwards and require a cash settlement of gains or losses in a developed market currency at settlement rather than a currency exchange. Emerging market governments frequently restrict movement of their currency into or out of the country to settle normal derivative transactions. Such countries have included Brazil (BRL), China (CNY), and Russia (RUB).
+
+A benefit of NDFs is lower credit risk because delivery of the notional amounts of both currencies is not required. Only the gains to one party are paid at settlement, **made in the developed market currency**.
+
 
 ## Chapter: Alternative Investment
 
@@ -495,7 +997,7 @@ $$
 
 six strategy categories:
 
-- 1. Equity related: 
+- 1. Equity related
 - 2. Event driven
 - 3. Relative value
 - 4. Opportunistic
@@ -503,9 +1005,10 @@ six strategy categories:
 - 6. Multi-manager
 
 #### Equity-related
+
 Ranked by overall long exposure to market
 
-#### L/S Equity: 
+##### L/S Equity: 
 
 L/S Equity, i.e. Long/Short Equity. The fund manager longs stocks that they think will rise, and shorts stocks that they believe will fall.
 
@@ -518,7 +1021,7 @@ Example:
 
 - Long extension: net exposure of 100%. e.g. 130/30 fund (gross exposure 160%)
 
-#### EMN:
+##### EMN:
 
 EMN, i.e. Equity Market Neutral
 
@@ -527,7 +1030,7 @@ EMN, i.e. Equity Market Neutral
 - alpha seeking, low volatility
 - leverage is generally applied to achieve acceptable level of return
 
-#### Dedicated Short Selling and Short-Biased
+##### Dedicated Short Selling and Short-Biased
 
 dedicated short-selling: pure shorts overpriced stocks (e.g. poorly managed, in declining market segment, or with deceitful accounting); typically 60% - 120% short (by holding the rest in cash).
 
@@ -535,6 +1038,95 @@ short-biased, similar except somewhat offset by a long exposure
 
 - negative corr with market, lower returns, greater volatility, little leverage
 - activist short selling: not only shorts, but also presents research that contends overprice
+
+#### Event driven
+
+- soft-catalyst event-driven approach: investment made before an event is being announced
+- hard-catalyst event-driven approach: investment made after a corporate event is being announced, taking advantage of security prices that have not fully adjusted. 
+
+note: Soft-catalyst investing is generally more volatile and, thus, riskier than a hard-catalyst approach.
+
+##### Merger Arbitrage
+
+long target company stock, and short acquiring company stock. Reverse if assume a failed merger (e.g., antitrust regulation)
+
+- possibly 300% to 500% leverage for returns
+- high sharpe ratios (relatively steady returns), but large left-tail risk (merger unexpectedly fails)
+
+##### Distressed Securities
+
+take positions in the securities of firms that are in financial distress, including firms that are in bankruptcy or near bankruptcy. Firms may find themselves in this position for a number of reasons, including too much leverage, difficulty competing in their sector, or accounting issues. The securities of such a firm will often trade at greatly depressed prices.
+
+Compounding the discounting of the securities of distressed firms is the fact that institutions such as insurance companies and banks are often not permitted to hold non-investment-grade securities. The selling of such securities can create significant pricing inefficiencies and can open up opportunities for hedge funds seeking profit.
+
+#### Relative Value
+
+attempt to exploit valuation differences between securities
+
+##### Fixed-Income Arbitrage
+
+take advantage of temporary mispricing of fixed-income instruments, by going long comparatively undervalued securities, and going short comparatively overvalued securities, under the assumption that prices will revert toward their fair values.
+
+- Yield curve trades: anticipated changes in yields
+- Carry trades: long high-yielding and short low yielding
+
+note:
+- substantial leverage is often applied, since fixed-income securities tend to be priced fairly efficiently, the amount of profit that can be earned by fixed-income arbitrage is somewhat limited. 400% leverage is not uncommon; even 1500% leverage is not unheard of.
+
+##### Convertible Bond Arbitrage
+
+One way to view convertible bonds is as a regular bond plus a long call option on the corresponding stock
+
+exploit the fact that the options within convertible instruments usually exhibit low implied volatilities when compared to the historical volatilities of the equities that underlie the option. To do this without taking on excess risk, convertible bond arbitrageurs will take on other positions to try to hedge out the delta and gamma risk of the convertible bond holdings.
+
+buy relatively undervalued convertible bond and short the relatively overvalued underlying stock
+- delta-hedge based on delta of the convertible bond, typically 300% long vs 200% short
+- profitable if realized equity volatility exceeds implied volatility of convertible's embedded option net of costs.
+
+#### Opportunistic
+
+top-down focus on regions, sectors, asset classes (not individual securities). Diversification potential with traditional assets, often with beneficial right-tail skew. Highly liquid, and high leverage.
+
+##### Global Macro
+
+identify global economic changes (e.g. inflation, FX, rates). may use significant leverage (600% - 700%). Can have high alpha and strong diversification potential. Successful manager being contrarian, investing ahead of others.
+
+##### Managed Futures
+
+invest long-short via derivatives, usually with high leverage (built-in feature of margin trading). Possible crowding. Typically systematic. many based on volatility or momentum. use signals for exit.
+
+#### Specialist
+
+##### Volatility trading
+
+exploit mispriced volatility (exploit skew and smile volatility surface), using:
+
+- options (e.g. straddles, calendar and price spreads)
+- futures on VIX 
+- Variance swaps
+
+note:
+- potential large gains due to convexity of volatility derivatives
+- hard to benchmark
+
+##### Reinsurance / Life settlements
+
+- Life settlement: HF buys policy from insured, takes over premium payments and receives death benefits
+
+- Catastrophe risk reinsurance: HF buys earthquake, tornado, hurricane, flood, etc insurance from reinsurer. Considerable expertise required. Typically illiquid.
+
+#### Multi-manager 
+
+A portfolio of various HF diversified strategies
+
+##### FoF (Funds-of-funds)
+
+typically 2% management fees + 20% performance incentive on gross gains net of management fees & expenses. Plus fees charged by FoF manager. Lack of transparency into individual HFs; principle-agent issues. Multi-layer fees, no performance fee netting across managers. May include HFs otherwise inaccessible.
+
+##### Multi-strategy funds
+
+One org, better knowledge over when, how much capital and leverage, of fund correlations and risks. Ease of reallocation between strategies. Absorb netting risk internally (favorable fees). Less diversified operational risk. 
+
 
 ### Investment Opportunity Set
 
@@ -577,12 +1169,12 @@ set of consideration for private wealth management
 criteria for a good benchmark
 
 - S: Specified in advance
-- A: Appropriate with style
+- A: Appropriate and consistent with the manager's investment style
 - M: Measurable
-- U: Unambiguous
-- R: Reflection of investment opinions
-- A: Accountable
-- I: investible
+- U: Unambiguous, able to clearly identify the securities
+- R: Reflective of current investment opinions
+- A: Accountable, accepted by the manager
+- I: Investible, possible to replicate passively
 
 ### Portfolio Reporting
 
@@ -649,7 +1241,9 @@ where:
 - M = leverage multiplier, A / E
 - $\rho_{AL}$ = correlation of percentage value changes in assets and liabilities
 
-### Lifetime Gifts vs Testamentary Bequests
+### Estate Planing 
+
+Lifetime Gifts vs Testamentary Bequests:
 
 $$
 \begin{aligned}
@@ -672,6 +1266,65 @@ steps:
 - 2. use ordinary annuity (END mode) to compute FV of the dividend
 - 3. $FV_{\text{premium}} - FV_{\text{dividend}}$, further minus cash value if using new surrender cost index
 - 4. use annuity due (BGN mode) to compute annuitized cost
+
+### Growth-adjusted discount rate
+
+$$
+r = (1 + r) / (1 + g) - 1
+$$
+
+### Taxation
+
+#### After-Tax Holding Period Return
+
+$$
+R' = \frac{value_1 - value_0 + income - tax}{value_0}
+$$
+or 
+$$
+R' = R - \frac{tax}{value_0}
+$$
+
+note:
+- if any intermediate cashflow paid as income, adjust $value_0$ using the way used in modified dietz return 
+
+#### After-Tax Post-Liquidation Return
+
+$$
+R_{PL} = \sqrt[n]{(1 + R'_1)(1 + R'_2) \cdots (1 + R'_n)(1 - \text{liquidity tax} / {\text{final value}})} - 1
+$$
+
+#### After-Tax Excess Return
+
+$$
+x' = R' - B'
+$$
+
+where:
+- $R'$ = after-tax return of the portfolio
+- $B'$ = after-tax return of the benchmark
+
+$$
+\alpha_{\text{tax}} = x' - x
+$$
+
+where:
+- $x'$ = after-tax excess return
+- $x$ = pretax excess return
+
+#### Tax-Efficiency Ratio (TER)
+
+$$
+TER = \frac{R'}{R}
+$$
+
+where:
+- $R'$ = after-tax return
+- $R$ = pretax return
+
+note:
+- for positive returns in taxable accounts, the higher the TER, the better.
+
 
 ## Chapter: Trading, Performance Evaluation
 
@@ -764,8 +1417,8 @@ note:
 
 ### Arithmetic vs Geometric Attribution
 
-|                  | Period 1 | Period 2 |
-|------------------|----------|----------|
+|                      | Period 1 | Period 2 |
+| -------------------- | -------- | -------- |
 | Portfolio Return (R) | 5%       | 5%       |
 | Benchmark Return (B) | 3%       | 3%       |
 
@@ -859,20 +1512,20 @@ note:
 
 #### Drawdown
 
-| Month    | Monthly Return | Drawdown | Cumulative Drawdown | Comments                |
-|----------|----------------|----------|---------------------|-------------------------|
-| 01/2018  | 3.14%          |          | 0.00%               |                         |
-| 02/2018  | –2.55%         | –2.55%   | –2.55%              | Drawdown phase begins   |
-| 03/2018  | –2.71%         | –2.71%   | –5.26%              |                         |
-| 04/2018  | –4.66%         | –4.66%   | –9.92%              |                         |
-| 05/2018  | –4.91%         | –4.91%   | –14.83%             |                         |
-| 06/2018  | –0.73%         | –0.73%   | –15.56%             | Maximum drawdown        |
-| 07/2018  | 2.18%          |          | –13.38%             | Recovery phase begins   |
-| 08/2018  | 3.11%          |          | –10.27%             |                         |
-| 09/2018  | 2.45%          |          | –7.82%              |                         |
-| 10/2018  | 3.65%          |          | –4.17%              |                         |
-| 11/2018  | 4.03%          |          | –0.14%              |                         |
-| 12/2018  | 4.14%          |          | 0.00%               | Drawdown recovered      |
+| Month   | Monthly Return | Drawdown | Cumulative Drawdown | Comments              |
+| ------- | -------------- | -------- | ------------------- | --------------------- |
+| 01/2018 | 3.14%          |          | 0.00%               |                       |
+| 02/2018 | –2.55%         | –2.55%   | –2.55%              | Drawdown phase begins |
+| 03/2018 | –2.71%         | –2.71%   | –5.26%              |                       |
+| 04/2018 | –4.66%         | –4.66%   | –9.92%              |                       |
+| 05/2018 | –4.91%         | –4.91%   | –14.83%             |                       |
+| 06/2018 | –0.73%         | –0.73%   | –15.56%             | Maximum drawdown      |
+| 07/2018 | 2.18%          |          | –13.38%             | Recovery phase begins |
+| 08/2018 | 3.11%          |          | –10.27%             |                       |
+| 09/2018 | 2.45%          |          | –7.82%              |                       |
+| 10/2018 | 3.65%          |          | –4.17%              |                       |
+| 11/2018 | 4.03%          |          | –0.14%              |                       |
+| 12/2018 | 4.14%          |          | 0.00%               | Drawdown recovered    |
 
 ### Time-to-Cash Table
 
@@ -883,8 +1536,55 @@ liquidity classification schedule (time-to-cash table) is used to manage liquidi
 - 3. liquidity budget
 
 | Time to Cash | Liquidity Classification | Liquidity Budget (% of portfolio) |
-|--------------|--------------------------|----------------------------------|
-| < 1 week     | Highly liquid            | At least 5%                      |
-| < 1 quarter  | Liquid                   | At least 25%                     |
-| < 1 year     | Semi-liquid              | At least 40%                     |
-| > 1 year     | Illiquid                 | Up to 40%                        |
+| ------------ | ------------------------ | --------------------------------- |
+| < 1 week     | Highly liquid            | At least 5%                       |
+| < 1 quarter  | Liquid                   | At least 25%                      |
+| < 1 year     | Semi-liquid              | At least 40%                      |
+| > 1 year     | Illiquid                 | Up to 40%                         |
+
+
+## Ethical and Professional Standards
+
+### GIPS return calculation
+
+Rt to be evaluated each time an interim ECF occurs. Then sub-periods returns are geometrically linked to create a TWRR (i.e. time-weighted rate of return). 
+
+$$
+R_t = \frac{EV - BV}{BV} \\
+$$
+
+$$
+R_{TWRR} = (1+R_1) \times (1+R_2) \times \cdots \times (1+R_t)
+
+$$
+
+Approximations when portfolios are not valued daily, and ECFs (i.e. external cash flows) are relatively small. The larger the ECFs and the more volatile the market, the greater the discrepancy will be between the true TWRR and the approximations.
+
+#### Modified Dietz Return
+
+$$
+R_{MD} = \frac{EV - BV - ECF}{BV + \text{adjusted ECF}}
+$$
+
+$$
+\text{adjusted ECF} = \sum{\text{ECF} \times \text{weight}}
+$$
+
+where:
+- weight is based on proportion of days in use, e.g. if the 1st ECF was received on Day 7, meaning that the manager had use of it for 23 days. Then the weight is 23/30.
+
+note:
+- ECFs will be positive if cash inflow, and negative if cash outflow
+
+#### MIRR
+
+MIRR (i.e. modified internal rate of return)
+
+$$
+EV = BV(1+r) + \sum{ECF(1 + r)^{\text{weight}}}
+$$
+
+solve for r
+
+where:
+- weight is the same defined in the modified Dietz Return
