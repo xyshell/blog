@@ -1,5 +1,5 @@
 ---
-title: cka-note
+title: CKA Note
 date: 2022-01-18 20:16:53
 tags: k8s, cka
 toc: true

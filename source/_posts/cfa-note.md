@@ -2,7 +2,9 @@
 title: CFA Note
 tags: cfa
 mathjax: true
+date: 2024-08-22 23:38:53
 ---
+
 
 # CFA Level 3
 
@@ -473,7 +475,7 @@ note:
 | Credit Spread Slope HY | Inverted                   | Upward sloping | Upward sloping | Inverted                |
 | Corporate Leverage     | Falling                    | Stable         | Rising         | Peak                    |
 
-![credit-spread-economic-cycle](..\photos\cfa-note\credit-spread-economic-cycle.png)
+![credit-spread-economic-cycle](/photos/cfa-note/credit-spread-economic-cycle.png)
 
 
 ### CIRP
@@ -516,7 +518,7 @@ total pnl = foreign returns - cost of funds + FX rate (D/F) return
 
 The protection buyer pays a regular fixed coupon to the protection seller periodically over the life of the contract in return for a payment upon a prespecified credit event on a reference issuer (or issuers). The size of the CDS is specified at the outset and referred to as the notional principal.
 
-![cds-mechanics](..\photos\cfa-note\cds-mechanics.png)
+![cds-mechanics](/photos/cfa-note/cds-mechanics.png)
 
 characteristics:
 - OTC traded credit derivative
@@ -574,8 +576,8 @@ A manager who believes that the current credit spread curve will remain unchange
 
 e.g. expect upward-sloping CDS curve to flatten, buy ST CDS protection, sell LT CDS protection
 
-| Economic Stage    | Typical Curve Feature                  | Cash                     | CDS                           |     |
-| ----------------- | -------------------------------------- | ------------------------ | ----------------------------- | --- |
+| Economic Stage    | Typical Curve Feature                  | Cash                     | CDS                           |
+| ----------------- | -------------------------------------- | ------------------------ | ----------------------------- |
 | Economic recovery | HY spreads narrow more than IG spreads | Buy HY bonds             | Sell HY protection            |
 |                   |                                        | Sell IG bonds            | Buy IG protection             |
 |                   | HY credit curve steepens               | Buy short-term HY bonds  | Sell short-term HY protection |
@@ -758,7 +760,7 @@ Growth-based approaches attempt to identify companies with revenues, earnings, o
 
 #### Calendar Spread
 
-![option-theta](..\photos\cfa-note\option-theta.png)
+![option-theta](/photos/cfa-note/option-theta.png)
 
 Options that are close to ATM have the highest thetas, and these increase as expiration approaches. In other words ATM options lose time value at an increasing rate as they mature.
 

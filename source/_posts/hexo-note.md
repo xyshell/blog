@@ -1,6 +1,6 @@
 ---
-title: Hexo & Theme Usage
-tags: Hexo
+title: Hexo Note
+tags: hexo
 ---
 
 [Hexo](https://hexo.io/), [documentation](https://hexo.io/docs/), [troubleshooting](https://hexo.io/docs/troubleshooting.html), [GitHub Issues](https://github.com/hexojs/hexo/issues).
@@ -113,3 +113,7 @@ https://github.com/zhwangart/hexo-theme-ocean
 ## Minos
 
 https://github.com/ppoffice/hexo-theme-minos
+
+## Next
+
+https://github.com/theme-next/hexo-theme-next
