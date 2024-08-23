@@ -193,7 +193,13 @@ $$
 immediate capital flows will strengthen the currencies of countries with high expected returns to the point where the high return currency will be expected to depreciate going forward by the return differential.
 
 $$
-E(\%\Delta S_{d/f}) = (r^d - r^f) + (Term^d - Term^f) + (Credit^d - Credit^f) + (Equity^d - Equity^f) + (Liquid^d - Liquid^f)
+\begin{aligned}
+E(\%\Delta S_{d/f}) &= (r^d - r^f) \\
+&\quad + (\text{Term}^d - \text{Term}^f) \\
+&\quad + (\text{Credit}^d - \text{Credit}^f) \\
+&\quad + (\text{Equity}^d - \text{Equity}^f) \\
+&\quad + (\text{Liquid}^d - \text{Liquid}^f)
+\end{aligned}
 $$
 
 ## Chapter: Asset Allocation (5-10%)
@@ -1140,9 +1146,9 @@ One org, better knowledge over when, how much capital and leverage, of fund corr
 
 - traditional approach:
 
-![Liquidity-Based-Investment-Opportunity-Set](/photos/cfa-note\Liquidity-Based-Investment-Opportunity-Set.png)
+![Liquidity-Based-Investment-Opportunity-Set](/photos/cfa-note/Liquidity-Based-Investment-Opportunity-Set.png)
 
-![Economic-Environment-Based-Investment-Opportunity-Set](/photos/cfa-note\Economic-Environment-Based-Investment-Opportunity-Set.png)
+![Economic-Environment-Based-Investment-Opportunity-Set](/photos/cfa-note/Economic-Environment-Based-Investment-Opportunity-Set.png)
 
 - risk factor based approach:
 
