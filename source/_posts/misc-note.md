@@ -1,11 +1,9 @@
 ---
-title: Trick Note
+title: Misc Note
 date: 2020-10-07 17:18:23
 tags:
 toc: true
 ---
-
-References of some interesting tricks.
 
 ## Show password in web
 
@@ -15,8 +13,14 @@ document.querySelector("input[type=password]").value;
 
 ## Show IP address
 
+public:
 ```bash
 curl ifconfig.me
+```
+
+private:
+```bash
+ipconfig
 ```
 
 ## Download file and unzip
@@ -62,3 +66,24 @@ with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
 - [css validator](https://jigsaw.w3.org/css-validator/)
 - [google's mobile-friendly test](https://search.google.com/test/mobile-friendly)
 - [website speed test](https://tools.pingdom.com/)
+
+
+## Setup personal PC as SSH server
+
+[Get started with OpenSSH for Windows
+](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-server-2022)
+
+related commands:
+
+```ps1
+New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled
+ True -Direction Inbound -Protocol TCP -Action Allow -Local Port 22
+```
+
+```ps1
+icacls.exe "C:\Users\<username>\.ssh\authorized_keys" /inheritance:r /grant "Administrators:F" /grant "SYSTEM:F"
+```
+
+```ps1
+Test-NetConnection -ComputerName 192.168.1.67 -Port 57859
+```
